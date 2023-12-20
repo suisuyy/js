@@ -11,60 +11,67 @@
 
 (function() {
     'use strict';
+
+
+
+
+
+    
+
+    // Your code here...
 let interval=1000;
 
 
 let translateButtonSelector='#react-root > div > div > div.css-175oi2r.r-13qz1uu.r-417010.r-18u37iz > main > div > div > div > div > div > section > div > div > div:nth-child(1) > div > div > article > div > div > div:nth-child(3) > div:nth-child(1) > div > div.css-1rynq56.r-bcqeeo.r-qvutc0.r-1qd0xha.r-n6v787.r-1cwl3u0.r-16dba41.r-6koalj.r-1w6e6rj.r-14gqq1x > span'
-let postContentSelector='#id__6km1tvk6c79'
-
+let postContentSelector='#id__6km1tvk6c79' 
+let translateButtonSelector2='#react-root > div > div > div.css-175oi2r.r-13qz1uu.r-417010 > main > div > div > div > div > div > section > div > div > div:nth-child(2) > div > div > article > div > div > div:nth-child(3) > div:nth-child(1) > div > div.css-1rynq56.r-bcqeeo.r-qvutc0.r-1qd0xha.r-n6v787.r-1cwl3u0.r-16dba41.r-6koalj.r-1w6e6rj.r-14gqq1x > span'
 
 
 
 setInterval(() => {
 
-    let translateButton=document.querySelector(translateButtonSelector)
+    
     let postContent=document.querySelector(postContentSelector)
-
+    
 
 
     hideChinese();
-    translateButton.click();
+    translate();
 
 
 }, interval);
 
 
+function translate(){
+    let translateButton=document.querySelector(translateButtonSelector)
+    let translateButton2=document.querySelector(translateButtonSelector2);
 
-function findAllChinese() {
-    // Use a regular expression to match Chinese characters
-    var chineseRegex = /[\u4E00-\u9FA5]/g;
 
-    // Select all elements on the page
-    var allElements = document.getElementsByTagName('*');
-
-    // Array to store elements containing Chinese characters
-    var chineseElements = [];
-
-    // Loop through all elements and check for Chinese characters
-    for (var i = 0; i < allElements.length; i++) {
-      var elementText = allElements[i].textContent || allElements[i].innerText;
-
-      // Check if the element text contains Chinese characters
-      if (chineseRegex.test(elementText)) {
-        chineseElements.push(allElements[i]);
-      }
+    
+    try {
+        translateButton.click();
+        
+    } catch (error) {
     }
 
-    // Log or process the found Chinese elements
-    console.log("Chinese Elements Found:", chineseElements);
-    return chineseElements;
-  }
+    try {
+        translateButton2.click();
+        
+    } catch (error) {
+    }
+
+
+    
+
+}
+
 
 
 function hideChinese(){
 // Find all elements containing Chinese characters
-var chineseElements = document.querySelectorAll(':lang(zh), :lang(zh-Hans), :lang(zh-Hant), :lang(zh-HK), :lang(zh-TW)');
-
+ var chineseElements = document.querySelectorAll(':lang(zh), :lang(zh-Hans), :lang(zh-Hant), :lang(zh-HK), :lang(zh-TW)');
+//chineseElements=findAllChinese();
+  
 // Replace Chinese elements with a button
 chineseElements.forEach(function(element) {
   if(element.style.display === 'none' || element.classList.contains('needshow')){
@@ -72,6 +79,7 @@ chineseElements.forEach(function(element) {
   }
     var button = document.createElement('button');
   button.innerText = 'Show Element';
+  button.lang='en'
   button.addEventListener('click', function() {
     // Show the original element when the button is clicked
     element.style.display = 'block';
@@ -90,14 +98,8 @@ chineseElements.forEach(function(element) {
 
 
 
+    
 
 
-
-
-
-
-
-
-
-    // Your code here...
+    
 })();
